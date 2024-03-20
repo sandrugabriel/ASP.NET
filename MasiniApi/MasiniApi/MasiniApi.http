@@ -1,0 +1,6 @@
+@MasiniApi_HostAddress = http://localhost:5239
+
+GET {{MasiniApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
