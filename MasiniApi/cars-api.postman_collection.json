@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "d07c645c-9222-4da0-97a1-cbe0022d315b",
+		"name": "cars-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33668461"
+	},
+	"item": [
+		{
+			"name": "GetAllCars",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5239/api/car/v1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5239",
+					"path": [
+						"api",
+						"car",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindByNameRoute",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5239/find/Audi/A6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5239",
+					"path": [
+						"find",
+						"Audi",
+						"A6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindByNameQuery",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5239/find?name=Audi&model=A6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5239",
+					"path": [
+						"find"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Audi"
+						},
+						{
+							"key": "model",
+							"value": "A6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5239/findById?id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5239",
+					"path": [
+						"findById"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
