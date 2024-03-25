@@ -1,4 +1,5 @@
-﻿using MasiniApi.Models;
+﻿using MasiniApi.Dto;
+using MasiniApi.Models;
 using MasiniApi.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography.X509Certificates;
@@ -59,5 +60,28 @@ namespace MasiniApi.Controllers
             var car = await  _carRepository.GetByIdAsync(id);
             return Ok(car);
         }
+
+        [HttpPost("/createcar")]
+        public async Task<ActionResult<Masini>> CreateCar([FromBody] CreateCarRequest request)
+        {
+            var car = await _carRepository.CreateCar(request);
+            return Ok(car);
+
+        }
+
+        [HttpPut("/updatecar")]
+        public async Task<ActionResult<Masini>> UpdateCar([FromQuery]int id, [FromBody]UpdateCarRequest request)
+        {
+            var car = await _carRepository.UpdateCar(id, request);
+            return Ok(car);
+        }
+
+        [HttpDelete("/deletecarById")]
+        public async Task<ActionResult<Masini>> DeleteCarById([FromQuery]int id)
+        {
+            var car = await _carRepository.DeleteCarById(id);
+            return Ok(car);
+        }
+
     }
 }

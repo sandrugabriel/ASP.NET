@@ -12,7 +12,7 @@ namespace MasiniApi.Data.Migrations
                 .WithColumn("id").AsInt32().PrimaryKey().Identity()
                 .WithColumn("marca").AsString().Nullable()
                 .WithColumn("model").AsString().NotNullable()
-                .WithColumn("data_fabricatie").AsDateTime().NotNullable()
+                .WithColumn("anul").AsInt32().NotNullable()
                 .WithColumn("culoare").AsString().NotNullable();
 
         }
