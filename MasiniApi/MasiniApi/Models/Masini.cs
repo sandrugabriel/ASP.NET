@@ -20,8 +20,8 @@ namespace MasiniApi.Models
         public string Marca { get; set; }
 
         [Required]
-        [Column("data_fabricatie")]
-        public DateTime Data { get; set; }
+        [Column("anul")]
+        public int Year { get; set; }
 
         [Required]
         [Column("culoare")]

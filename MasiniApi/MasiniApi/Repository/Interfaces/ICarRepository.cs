@@ -1,4 +1,6 @@
-﻿using MasiniApi.Models;
+﻿using MasiniApi.Dto;
+using MasiniApi.Models;
+using System.Net.Mail;
 
 namespace MasiniApi.Repository.Interfaces
 {
@@ -12,6 +14,11 @@ namespace MasiniApi.Repository.Interfaces
 
         Task<Masini> GetByIdAsync(int id);
 
+        Task<Masini> CreateCar(CreateCarRequest request);
+
+        Task<Masini> UpdateCar(int id,UpdateCarRequest request);
+
+        Task<Masini> DeleteCarById(int id);   
 
     }
 }
