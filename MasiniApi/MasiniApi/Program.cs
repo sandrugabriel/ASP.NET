@@ -2,6 +2,8 @@ using FluentMigrator.Runner;
 using MasiniApi.Data;
 using MasiniApi.Repository;
 using MasiniApi.Repository.Interfaces;
+using MasiniApi.Service;
+using MasiniApi.Service.interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICarRepository, CarRepository>();
+builder.Services.AddScoped<ICarQueryService,CarQueryService>();
+builder.Services.AddScoped<ICarCommandService,CarCommandService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("Default")!,
