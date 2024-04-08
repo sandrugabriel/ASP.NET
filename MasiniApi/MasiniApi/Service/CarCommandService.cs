@@ -38,7 +38,7 @@ namespace MasiniApi.Service
 
             if(car == null)
             {
-                throw new ItemDoesNotExist(Constants.Constants.NO_CAR_EXIST);
+                throw new ItemDoesNotExist(Constants.Constants.CAR_DOES_NOT_EXIST);
             }
 
             await _carRepository.DeleteCarById(id);
