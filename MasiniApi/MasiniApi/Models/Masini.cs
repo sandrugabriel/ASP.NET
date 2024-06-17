@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.Contracts;
+using System.Text.Json.Serialization;
 
 namespace MasiniApi.Models
 {
@@ -11,6 +13,12 @@ namespace MasiniApi.Models
         [Column("id")]
         public int Id { get; set; }
 
+        [ForeignKey("userId")]
+        public int UserId { get; set; }
+
+        [JsonIgnore]
+        public virtual User User { get; set; }
+        
         [Required]
         [Column("model")]
         public string Model { get; set; }
