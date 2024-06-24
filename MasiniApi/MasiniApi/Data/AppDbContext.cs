@@ -1,4 +1,5 @@
-﻿using MasiniApi.Models;
+﻿using MasiniApi.Cars.Models;
+using MasiniApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MasiniApi.Data
@@ -7,12 +8,12 @@ namespace MasiniApi.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public virtual DbSet<Masini> Masini { get; set; }
+        public virtual DbSet<Car> Masini { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Masini>()
+            modelBuilder.Entity<Car>()
                 .HasOne(a => a.User)
                 .WithMany(a => a.Masini)
                 .HasForeignKey(a => a.UserId)

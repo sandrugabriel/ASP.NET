@@ -1,10 +1,9 @@
-﻿using MasiniApi.Constants;
+﻿using MasiniApi.Cars.Controllers.interfaces;
+using MasiniApi.Cars.Dto;
+using MasiniApi.Cars.Service.interfaces;
 using MasiniApi.Controllers;
-using MasiniApi.Controllers.interfaces;
-using MasiniApi.Dto;
 using MasiniApi.Exceptions;
-using MasiniApi.Models;
-using MasiniApi.Service.interfaces;
+using MasiniApi.System.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore.Query.Internal;
@@ -58,7 +57,7 @@ namespace Test.Car.UnitTests
 
             var okResult = Assert.IsType<OkObjectResult>(result.Result);
 
-            var allCars = Assert.IsType<List<Masini>>(okResult.Value);
+            var allCars = Assert.IsType<List<MasiniApi.Cars.Models.Car>>(okResult.Value);
 
             Assert.Equal(5,allCars.Count);
             Assert.Equal(200,okResult.StatusCode);

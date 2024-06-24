@@ -1,10 +1,9 @@
-﻿using MasiniApi.Constants;
-using MasiniApi.Dto;
-using MasiniApi.Exceptions;
-using MasiniApi.Models;
-using MasiniApi.Repository.Interfaces;
+﻿using MasiniApi.Cars.Dto;
+using MasiniApi.Cars.Repository.Interfaces;
+using MasiniApi.Cars.Service.interfaces;
 using MasiniApi.Service;
-using MasiniApi.Service.interfaces;
+using MasiniApi.System.Constants;
+using MasiniApi.System.Exceptions;
 using Moq;
 using NuGet.Frameworks;
 using Pomelo.EntityFrameworkCore.MySql.Query.Internal;
@@ -40,7 +39,7 @@ namespace Test.Car.UnitTests
                 Culoare = "alb"
             };
 
-            _mock.Setup(repo=>repo.CreateCar(createRequest)).ReturnsAsync((Masini)null);
+            _mock.Setup(repo=>repo.CreateCar(createRequest)).ReturnsAsync((MasiniApi.Cars.Models.Car)null);
             Exception exception = await Assert.ThrowsAsync<InvalidMarca>(() => _commandService.CreateCar(createRequest));
 
             Assert.Equal(Constants.INVALID_MARCA,exception.Message);
@@ -57,7 +56,7 @@ namespace Test.Car.UnitTests
                 Culoare = "alb"
             };
 
-            _mock.Setup(repo => repo.CreateCar(createRequest)).ReturnsAsync((Masini)null);
+            _mock.Setup(repo => repo.CreateCar(createRequest)).ReturnsAsync((MasiniApi.Cars.Models.Car)null);
             var exception = await Assert.ThrowsAsync<InvalidModel>(() => _commandService.CreateCar(createRequest));
 
             Assert.Equal(Constants.INVALID_MODEL,exception.Message);
@@ -94,7 +93,7 @@ namespace Test.Car.UnitTests
                 Marca = "asd"
             };
 
-            _mock.Setup(repo=>repo.GetByIdAsync(50)).ReturnsAsync((Masini)null);
+            _mock.Setup(repo=>repo.GetByIdAsync(50)).ReturnsAsync((MasiniApi.Cars.Models.Car)null);
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(() => _commandService.UpdateCar(50,updateRequest));
 
@@ -159,7 +158,7 @@ namespace Test.Car.UnitTests
         [Fact]
         public async Task Delete_ItemDoesNotExist()
         {
-            _mock.Setup(repo=>repo.DeleteCarById(It.IsAny<int>())).ReturnsAsync((Masini)null);
+            _mock.Setup(repo=>repo.DeleteCarById(It.IsAny<int>())).ReturnsAsync((MasiniApi.Cars.Models.Car)null);
 
             var exception = await Assert.ThrowsAnyAsync<ItemDoesNotExist>(() => _commandService.DeleteCar(1));
 

@@ -1,9 +1,8 @@
-using MasiniApi.Constants;
-using MasiniApi.Exceptions;
-using MasiniApi.Models;
-using MasiniApi.Repository.Interfaces;
+using MasiniApi.Cars.Repository.Interfaces;
+using MasiniApi.Cars.Service.interfaces;
 using MasiniApi.Service;
-using MasiniApi.Service.interfaces;
+using MasiniApi.System.Constants;
+using MasiniApi.System.Exceptions;
 using Moq;
 using System.Reflection.Metadata;
 using System.Runtime.ExceptionServices;
@@ -27,7 +26,7 @@ namespace Test.Car.UnitTests
         [Fact]
         public async Task GetAllCars_ThrowItemsDoNoeExistException()
         {
-            _mock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(new List<Masini>());
+            _mock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(new List<MasiniApi.Cars.Models.Car>());
 
             var exception = await Assert.ThrowsAsync<ItemsDoNotExists>(() => _carQueryService.GetAllAsync());
 
@@ -51,7 +50,7 @@ namespace Test.Car.UnitTests
         [Fact]
         public async Task GetById_ItemDoesNotExist()
         {
-            _mock.Setup(repo =>repo.GetByIdAsync(50)).ReturnsAsync((Masini)null);
+            _mock.Setup(repo =>repo.GetByIdAsync(50)).ReturnsAsync((MasiniApi.Cars.Models.Car)null);
 
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(() => _carQueryService.GetByIdAsync(50));
 
@@ -75,7 +74,7 @@ namespace Test.Car.UnitTests
         [Fact]
         public async Task GetByName_ItemDoesNotExist()
         {
-            _mock.Setup(repo=>repo.GetByNameAsync("1","2")).ReturnsAsync((Masini)null);
+            _mock.Setup(repo=>repo.GetByNameAsync("1","2")).ReturnsAsync((MasiniApi.Cars.Models.Car)null);
             var exception = await Assert.ThrowsAsync<ItemDoesNotExist>(() => _carQueryService.GetByNameAsync("1","2"));
 
             Assert.Equal(Constants.CAR_DOES_NOT_EXIST,exception.Message);
