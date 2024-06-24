@@ -1,5 +1,4 @@
-﻿using MasiniApi.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +9,9 @@ namespace Test.Car.Helpers
     public class TestCarFactory
     {
 
-        public static Masini CreateCar(int id)
+        public static MasiniApi.Cars.Models.Car CreateCar(int id)
         {
-            return new Masini
+            return new MasiniApi.Models.Car
             {
                 Id = id,
                 Model = "test" + id.ToString(),
@@ -23,9 +22,9 @@ namespace Test.Car.Helpers
             };
         }
 
-        public static List<Masini> CreateCars(int cout) {
+        public static List<MasiniApi.Cars.Models.Car> CreateCars(int cout) {
         
-            List<Masini> cars = new List<Masini>();
+            List<MasiniApi.Cars.Models.Car> cars = new List<MasiniApi.Cars.Models.Car>();
 
             for(int i=0; i < cout; i++)
             {

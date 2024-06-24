@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Text;
 using MasiniApi.Dto;
-using MasiniApi.Models;
 using Newtonsoft.Json;
 using Test.Car.Infrastucture;
 
@@ -29,7 +28,7 @@ namespace Test.Car.IntegrationTests
             Assert.Equal(HttpStatusCode.Created,response.StatusCode);
 
             var responseString = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<Masini>(responseString);
+            var result = JsonConvert.DeserializeObject<MasiniApi.Cars.Models.Car>(responseString);
             
             Assert.NotNull(result);
             Assert.Equal(car.Culoare,result.Culoare);
