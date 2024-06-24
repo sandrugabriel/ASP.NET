@@ -1,7 +1,7 @@
 ﻿using MasiniApi.Cars.Dto;
 using MasiniApi.Cars.Repository.Interfaces;
+using MasiniApi.Cars.Service;
 using MasiniApi.Cars.Service.interfaces;
-using MasiniApi.Service;
 using MasiniApi.System.Constants;
 using MasiniApi.System.Exceptions;
 using Moq;
@@ -12,9 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Test.Car.Helpers;
+using Test.Cars.Helpers;
 
-namespace Test.Car.UnitTests
+namespace Test.Cars.UnitTests
 {
     public class TestCommandService
     {
@@ -29,14 +29,14 @@ namespace Test.Car.UnitTests
         }
 
         [Fact]
-        public async Task CreateCar_InvalidMarca()
+        public async Task CreateCar_InvalidBrand()
         {
             var createRequest = new CreateCarRequest
             {
-                Marca = "",
+                Brand = "",
                 Model = "23",
-                AnulFacricatiei = 1999,
-                Culoare = "alb"
+                Year = 1999,
+                Color = "alb"
             };
 
             _mock.Setup(repo=>repo.CreateCar(createRequest)).ReturnsAsync((MasiniApi.Cars.Models.Car)null);
@@ -50,10 +50,10 @@ namespace Test.Car.UnitTests
         {
             var createRequest = new CreateCarRequest
             {
-                Marca = "23",
+                Brand = "23",
                 Model = "",
-                AnulFacricatiei = 2000,
-                Culoare = "alb"
+                Year = 2000,
+                Color = "alb"
             };
 
             _mock.Setup(repo => repo.CreateCar(createRequest)).ReturnsAsync((MasiniApi.Cars.Models.Car)null);
@@ -68,21 +68,21 @@ namespace Test.Car.UnitTests
         {
             var createRequest = new CreateCarRequest
             {
-                Marca = "dfs",
+                Brand = "dfs",
                 Model = "sdf",
-                AnulFacricatiei = 2000,
-                Culoare = "alb"
+                Year = 2000,
+                Color = "alb"
             };
 
             var car = TestCarFactory.CreateCar(50);
-            car.Marca = createRequest.Marca;
+            car.Brand = createRequest.Brand;
 
             _mock.Setup(repo=>repo.CreateCar(It.IsAny<CreateCarRequest>())).ReturnsAsync(car);
 
             var result = await _commandService.CreateCar(createRequest);
 
             Assert.NotNull(result);
-            Assert.Equal(result.Marca,createRequest.Marca);
+            Assert.Equal(result.Brand,createRequest.Brand);
         }
 
         [Fact]
@@ -90,7 +90,7 @@ namespace Test.Car.UnitTests
         {
             var updateRequest = new UpdateCarRequest
             {
-                Marca = "asd"
+                Brand = "asd"
             };
 
             _mock.Setup(repo=>repo.GetByIdAsync(50)).ReturnsAsync((MasiniApi.Cars.Models.Car)null);
@@ -101,15 +101,15 @@ namespace Test.Car.UnitTests
         }
 
         [Fact]
-        public async Task Update_InvalidMarca()
+        public async Task Update_InvalidBrand()
         {
             var updateRequest = new UpdateCarRequest
             {
-                Marca = "",
+                Brand = "",
                 Model = "32"
             };
             var car = TestCarFactory.CreateCar(1);
-            car.Marca = updateRequest.Marca;
+            car.Brand = updateRequest.Brand;
             _mock.Setup(repo => repo.GetByIdAsync(1)).ReturnsAsync(car);
 
             var exception = await Assert.ThrowsAsync<InvalidMarca>(() => _commandService.UpdateCar(1,updateRequest));

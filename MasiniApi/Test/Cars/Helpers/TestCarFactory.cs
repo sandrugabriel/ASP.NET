@@ -1,23 +1,24 @@
-﻿using System;
+﻿using MasiniApi.Cars.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test.Car.Helpers
+namespace Test.Cars.Helpers
 {
     public class TestCarFactory
     {
 
         public static MasiniApi.Cars.Models.Car CreateCar(int id)
         {
-            return new MasiniApi.Models.Car
+            return new Car
             {
                 Id = id,
                 Model = "test" + id.ToString(),
-                Marca = id.ToString(),
+                Brand = id.ToString(),
                 Year = 2000 + id,
-                Culoare = "alba"
+                Color = "alba"
 
             };
         }
