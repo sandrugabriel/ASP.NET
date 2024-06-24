@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using MasiniApi.Data;
 
-namespace Test.Car.Infrastucture
+namespace Test.Cars.Infrastucture
 {
     public class ApiWebApplicationFactory : WebApplicationFactory<Program>
     {

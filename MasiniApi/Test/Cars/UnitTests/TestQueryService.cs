@@ -1,15 +1,15 @@
 using MasiniApi.Cars.Repository.Interfaces;
+using MasiniApi.Cars.Service;
 using MasiniApi.Cars.Service.interfaces;
-using MasiniApi.Service;
 using MasiniApi.System.Constants;
 using MasiniApi.System.Exceptions;
 using Moq;
 using System.Reflection.Metadata;
 using System.Runtime.ExceptionServices;
-using Test.Car.Helpers;
+using Test.Cars.Helpers;
 
 
-namespace Test.Car.UnitTests
+namespace Test.Cars.UnitTests
 {
     public class TestQueryService
     {

@@ -1,9 +1,9 @@
-﻿using MasiniApi.Cars.Controllers.interfaces;
+﻿using MasiniApi.Cars.Controllers;
+using MasiniApi.Cars.Controllers.interfaces;
 using MasiniApi.Cars.Dto;
 using MasiniApi.Cars.Service.interfaces;
-using MasiniApi.Controllers;
-using MasiniApi.Exceptions;
 using MasiniApi.System.Constants;
+using MasiniApi.System.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore.Query.Internal;
@@ -13,10 +13,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Test.Car.Helpers;
+using Test.Cars.Helpers;
 using Xunit.Sdk;
 
-namespace Test.Car.UnitTests
+namespace Test.Cars.UnitTests
 {
     public class TestController
     {
@@ -70,10 +70,10 @@ namespace Test.Car.UnitTests
 
             var createRequest = new CreateCarRequest
             {
-                Marca = "",
+                Brand = "",
                 Model="2",
-                AnulFacricatiei = 2000,
-                Culoare = "Alb"
+                Year = 2000,
+                Color = "Alb"
             };
 
             _mockCommandService.Setup(repo=>repo.CreateCar(It.IsAny<CreateCarRequest>())).
@@ -93,17 +93,17 @@ namespace Test.Car.UnitTests
         {
             var createRequest = new CreateCarRequest
             {
-                Marca = "asd",
+                Brand = "asd",
                 Model = "2",
-                AnulFacricatiei = 2000,
-                Culoare = "Alb"
+                Year = 2000,
+                Color = "Alb"
             };
 
             var car = TestCarFactory.CreateCar(1);
-            car.Marca = createRequest.Marca;
+            car.Brand = createRequest.Brand;
             car.Model = createRequest.Model;
-            car.Year = createRequest.AnulFacricatiei;
-            car.Culoare = createRequest.Culoare;
+            car.Year = createRequest.Year;
+            car.Color = createRequest.Color;
 
             _mockCommandService.Setup(repo=>repo.CreateCar(It.IsAny<CreateCarRequest>())).ReturnsAsync(car);
 
@@ -121,7 +121,7 @@ namespace Test.Car.UnitTests
         {
             var update = new UpdateCarRequest
             {
-                Marca = "test"
+                Brand = "test"
             };
 
             _mockCommandService.Setup(repo=>repo.UpdateCar(1,update)).ThrowsAsync(new ItemDoesNotExist(Constants.CAR_DOES_NOT_EXIST));
@@ -138,7 +138,7 @@ namespace Test.Car.UnitTests
         {
             var update = new UpdateCarRequest
             {
-                Marca = "test"
+                Brand = "test"
             };
 
             var car = TestCarFactory.CreateCar(1);
